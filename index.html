@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kat van Duinen</title>
+  <meta name="description" content="Kat van Duinen — African fashion and leather house, Cape Town.">
+
+  <script>
+    document.documentElement.classList.replace('no-js', 'js');
+    document.documentElement.classList.add('is-loading');
+
+    // Always open at the top: no restored scroll position, no jump to a #section left in the URL.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.addEventListener('load', function () {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+  </script>
+
+  <link rel="preload" as="image" href="Images%20and%20Videos/kvd-logo-light.png">
+  <link rel="preload" as="image"
+        imagesrcset="Images%20and%20Videos/kvd-hero-image-1440.webp 1440w, Images%20and%20Videos/kvd-hero-image-2880.webp 2880w"
+        imagesizes="100vw" fetchpriority="high">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Colour */
+      --color-bg: #ffffff;
+      --color-text: #000000;
+      --color-heading: #000000;
+      --color-footer-bg: #000000;
+      --color-footer-heading: #ffffff;
+      --color-footer-text: #E7E7E7;
+      --color-inverse-bg: #000000;
+      --color-inverse-text: #ffffff;
+
+      /* Type */
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      --fw-light: 300;
+      --fw-regular: 400;
+      --fw-medium: 500;
+
+      --fs-display: clamp(1.625rem, 1.3rem + 1vw, 2rem);
+      --fs-body: 0.9375rem;
+      --fs-small: 0.8125rem;
+      --fs-label: 0.625rem;
+
+      --lh-tight: 1.2;
+      --lh-body: 1.6;
+      --tracking-label: 0.08em;
+
+      /* Layout (design canvas: 1440px) */
+      --page-max: 1440px;
+      --gutter: clamp(16px, 5.35vw, 77px);
+      --gutter-nav: clamp(16px, 3.125vw, 45px);
+      --text-measure: 40rem;
+      --section-space: clamp(64px, 10vw, 144px);
+      --announcement-h: 22px;
+      --nav-h: 93px;
+      --logo-w: 170px;
+      --nav-link-gap: 40px;
+
+      /* Loader timing (read by JS) */
+      --loader-logo: 2400ms;
+      --loader-pause: 300ms;
+      --loader-fade: 900ms;
+
+      /* Scroll reveal */
+      --reveal-distance: 24px;
+      --reveal-duration: 900ms;
+      --reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, figure, blockquote, ul, ol { margin: 0; }
+    ul, ol { padding: 0; list-style: none; }
+
+    h1, h2 {
+      color: var(--color-heading);
+      font-size: var(--fs-display);
+      font-weight: var(--fw-light);
+      line-height: var(--lh-tight);
+      letter-spacing: -0.005em;
+    }
+
+    h3, h4, h5, h6 {
+      color: var(--color-heading);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+
+    img, picture, video, svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button { font: inherit; color: inherit; }
+
+    a:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
+    /* Loader */
+    html.is-loading,
+    html.is-loading body { overflow: hidden; }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      background: var(--color-inverse-bg);
+      transition:
+        opacity var(--loader-fade) ease,
+        visibility 0s linear var(--loader-fade);
+    }
+    .no-js .loader { display: none; }
+    .loader.is-done {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader__logo {
+      width: clamp(150px, 14vw, 200px);
+      opacity: 0;
+      animation: loader-logo var(--loader-logo) ease-in-out forwards;
+    }
+    @keyframes loader-logo {
+      0%   { opacity: 0; }
+      30%  { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Sticky header: announcement bar + navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    [id] { scroll-margin-top: calc(var(--announcement-h) + var(--nav-h)); }
+
+    /* Announcement bar */
+    .announcement {
+      height: var(--announcement-h);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-inverse-bg);
+      color: var(--color-inverse-text);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-regular);
+      line-height: 1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .announcement__track {
+      display: flex;
+      width: max-content;
+    }
+    .announcement.is-ready .announcement__track {
+      animation: marquee var(--marquee-duration, 40s) linear infinite;
+    }
+    .announcement__group {
+      display: flex;
+      flex-shrink: 0;
+    }
+    .announcement__group li {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+    .announcement__group li::after {
+      content: '\2022';
+      padding: 0 12px;
+    }
+    @keyframes marquee {
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* Navigation */
+    .site-nav {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      height: var(--nav-h);
+      padding: 0 var(--gutter-nav);
+      background: var(--color-bg);
+    }
+    .site-nav__logo { grid-column: 2; }
+    .site-nav__logo img { width: var(--logo-w); }
+    .site-nav__links {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      gap: var(--nav-link-gap);
+      font-size: var(--fs-small);
+    }
+    .site-nav__links a {
+      display: inline-block;
+      padding: 12px 0;
+      transition: opacity 0.3s ease;
+    }
+    .site-nav__links a:hover { opacity: 0.55; }
+
+    /* Hero */
+    .hero {
+      height: calc(100vh - var(--announcement-h) - var(--nav-h));
+      height: calc(100svh - var(--announcement-h) - var(--nav-h));
+      overflow: hidden;
+    }
+    .hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 68% 50%;
+    }
+
+    /* Intro */
+    .intro {
+      padding: clamp(96px, 11.1vw, 160px) var(--gutter);
+      text-align: center;
+    }
+    .intro__title {
+      font-weight: var(--fw-light);
+      text-wrap: balance;
+    }
+    .intro__text {
+      max-width: 620px;
+      margin: 28px auto 0;
+      font-size: 1rem;
+      font-weight: var(--fw-light);
+      line-height: 1.5;
+      text-wrap: pretty;
+    }
+
+    /* Gallery: positions are % of the 1440 x 2074 design canvas */
+    .gallery {
+      padding-top: clamp(8px, 0.9vw, 13px);
+      padding-bottom: clamp(96px, 11.1vw, 160px);
+    }
+    .gallery__canvas {
+      position: relative;
+      max-width: var(--page-max);
+      margin: 0 auto;
+      aspect-ratio: 1440 / 2074;
+    }
+    .gallery__item {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      margin: 0;
+    }
+    .gallery__item:nth-child(1) { --x: 2.778%;  --y: 0.964%;  --w: 23.542%; }
+    .gallery__item:nth-child(2) { --x: 42.5%;   --y: 6.413%;  --w: 14.722%; }
+    .gallery__item:nth-child(3) { --x: 66.667%; --y: 0%;      --w: 30.556%; }
+    .gallery__item:nth-child(4) { --x: 19.097%; --y: 39.73%;  --w: 21.736%; }
+    .gallery__item:nth-child(5) { --x: 59.097%; --y: 33.462%; --w: 20.903%; }
+    .gallery__item:nth-child(6) { --x: 27.014%; --y: 69.19%;  --w: 29.583%; }
+    .gallery__item:nth-child(7) { --x: 67.778%; --y: 73.385%; --w: 16.111%; }
+
+    .gallery__parallax { will-change: transform; }
+    .gallery__img {
+      width: 100%;
+      transition: transform 0.9s var(--reveal-ease);
+    }
+    @media (hover: hover) {
+      .gallery__item:hover .gallery__img { transform: scale(1.02); }
+    }
+
+    @media (max-width: 767px) {
+      .gallery__canvas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 64px;
+        padding: 0 var(--gutter);
+        aspect-ratio: auto;
+      }
+      .gallery__item {
+        position: static;
+        width: 100%;
+        max-width: 480px;
+      }
+    }
+
+    /* Footer layout */
+    .site-footer {
+      padding: 60px var(--gutter) clamp(120px, 15vw, 218px);
+    }
+    .site-footer__grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      column-gap: clamp(24px, 3.75vw, 54px);
+      row-gap: 48px;
+      max-width: 1286px;
+      margin: 0 auto;
+    }
+    .site-footer__heading {
+      margin-bottom: 24px;
+      font-size: 0.5625rem;
+      font-weight: var(--fw-medium);
+      line-height: 1.2;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .site-footer__text {
+      font-size: 0.75rem;
+      font-style: normal;
+      line-height: 17px;
+    }
+    .site-footer__text a { transition: opacity 0.3s ease; }
+    .site-footer__text a:hover { opacity: 0.6; }
+    .site-footer__copy {
+      font-size: 0.625rem;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1023px) {
+      .site-footer__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 767px) {
+      .site-footer { padding: 56px var(--gutter) 72px; }
+      .site-footer__grid {
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+      }
+      .site-footer__heading {
+        margin-bottom: 14px;
+        font-size: 0.625rem;
+      }
+      .site-footer__text {
+        font-size: 0.875rem;
+        line-height: 1.75;
+      }
+      .site-footer__text a { display: inline-block; }
+      .site-footer__copy { font-size: 0.6875rem; }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --nav-h: 96px;
+        --logo-w: 156px;
+      }
+      .site-nav__links { display: none; }
+      .loader__logo { width: 225px; }
+    }
+
+    /* Footer: black ground, white headings, #E7E7E7 text and links */
+    .site-footer {
+      background: var(--color-footer-bg);
+      color: var(--color-footer-text);
+    }
+    .site-footer h1,
+    .site-footer h2,
+    .site-footer h3,
+    .site-footer h4,
+    .site-footer h5,
+    .site-footer h6 { color: var(--color-footer-heading); }
+
+    /* Scroll reveal: add .reveal to any element; optional --reveal-delay per element */
+    .js .reveal {
+      opacity: 0;
+      transform: translate3d(0, var(--reveal-distance), 0);
+      transition:
+        opacity var(--reveal-duration) var(--reveal-ease),
+        transform var(--reveal-duration) var(--reveal-ease);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .announcement.is-ready .announcement__track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader" aria-hidden="true">
+    <img class="loader__logo" src="Images%20and%20Videos/kvd-logo-light.png" width="170" height="46" alt="">
+  </div>
+
+  <header class="site-header">
+    <div class="announcement" role="region" aria-label="Announcement">
+      <div class="announcement__track">
+        <ul class="announcement__group">
+          <li>New website coming soon</li>
+          <li aria-hidden="true">New website coming soon</li>
+          <li aria-hidden="true">New website coming soon</li>
+          <li aria-hidden="true">New website coming soon</li>
+          <li aria-hidden="true">New website coming soon</li>
+          <li aria-hidden="true">New website coming soon</li>
+        </ul>
+      </div>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="site-nav__logo" href="#">
+        <img src="Images%20and%20Videos/kvd-logo-dark.png" width="170" height="46" alt="Kat van Duinen">
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Featured">
+      <img class="hero__img"
+           src="Images%20and%20Videos/kvd-hero-image-1440.webp"
+           srcset="Images%20and%20Videos/kvd-hero-image-1440.webp 1440w, Images%20and%20Videos/kvd-hero-image-2880.webp 2880w"
+           sizes="100vw"
+           width="2880" height="1620"
+           fetchpriority="high"
+           alt="Model holding a yellow python-leather Kat van Duinen clutch over half her face, with a bouquet of red and dried flowers at her shoulder">
+    </section>
+
+    <section class="intro" id="about" aria-labelledby="intro-title">
+      <h1 class="intro__title reveal" id="intro-title">African Fashion &amp; Leather House</h1>
+      <p class="intro__text reveal" style="--reveal-delay: 150ms">
+        Founded in Cape Town and rooted in Africa since 2010, Kat van Duinen shapes sculptural pieces from exceptional leathers and natural fabrics. Each piece is designed and made in South Africa by local artisans, and draws on the continent’s craftsmanship, materials, people and art.
+      </p>
+    </section>
+
+    <section class="gallery" aria-label="Gallery">
+      <div class="gallery__canvas">
+        <figure class="gallery__item" data-speed="0.05">
+          <div class="gallery__parallax"><div class="reveal">
+            <img class="gallery__img"
+                 src="Images%20and%20Videos/kvd-image-01-640.webp"
+                 srcset="Images%20and%20Videos/kvd-image-01-640.webp 640w, Images%20and%20Videos/kvd-image-01-1200.webp 1200w"
+                 sizes="(max-width: 767px) min(100vw, 480px), min(23.6vw, 339px)"
+                 width="1200" height="1600" loading="lazy" decoding="async"
+                 alt="Model in a pink blouse holding a mustard python-leather top-handle bag to her lips">
+          </div></div>
+        </figure>
+        <figure class="gallery__item" data-speed="-0.04">
+          <div class="gallery__parallax"><div class="reveal" style="--reveal-delay: 120ms">
+            <img class="gallery__img"
+                 src="Images%20and%20Videos/kvd-image-02-640.webp"
+                 srcset="Images%20and%20Videos/kvd-image-02-640.webp 640w, Images%20and%20Videos/kvd-image-02-1200.webp 1200w"
+                 sizes="(max-width: 767px) min(100vw, 480px), min(14.8vw, 212px)"
+                 width="1200" height="1803" loading="lazy" decoding="async"
+                 alt="Model in a red ruffled gown holding a small natural python-leather bucket bag">
+          </div></div>
+        </figure>
+        <figure class="gallery__item" data-speed="0.08">
+          <div class="gallery__parallax"><div class="reveal" style="--reveal-delay: 240ms">
+            <img class="gallery__img"
+                 src="Images%20and%20Videos/kvd-image-03-640.webp"
+                 srcset="Images%20and%20Videos/kvd-image-03-640.webp 640w, Images%20and%20Videos/kvd-image-03-1200.webp 1200w"
+                 sizes="(max-width: 767px) min(100vw, 480px), min(30.6vw, 440px)"
+                 width="1200" height="1598" loading="lazy" decoding="async"
+                 alt="Model in a black fur stole carrying a charcoal crocodile-embossed tote and a purple ostrich-leather clutch">
+          </div></div>
+        </figure>
+        <figure class="gallery__item" data-speed="-0.05">
+          <div class="gallery__parallax"><div class="reveal">
+            <img class="gallery__img"
+                 src="Images%20and%20Videos/kvd-image-04-640.webp"
+                 srcset="Images%20and%20Videos/kvd-image-04-640.webp 640w, Images%20and%20Videos/kvd-image-04-1200.webp 1200w"
+                 sizes="(max-width: 767px) min(100vw, 480px), min(21.8vw, 313px)"
+                 width="1200" height="1598" loading="lazy" decoding="async"
+                 alt="Model in a blue feather boa holding a mustard python-leather handbag and a python bucket bag">
+          </div></div>
+        </figure>
+        <figure class="gallery__item" data-speed="0.06">
+          <div class="gallery__parallax"><div class="reveal" style="--reveal-delay: 120ms">
+            <img class="gallery__img"
+                 src="Images%20and%20Videos/kvd-image-05-640.webp"
+                 srcset="Images%20and%20Videos/kvd-image-05-640.webp 640w, Images%20and%20Videos/kvd-image-05-1200.webp 1200w"
+                 sizes="(max-width: 767px) min(100vw, 480px), min(21vw, 301px)"
+                 width="1200" height="1802" loading="lazy" decoding="async"
+                 alt="Model holding a teal ostrich-leather clutch beside a cascade of dried flowers, with a red clutch below">
+          </div></div>
+        </figure>
+        <figure class="gallery__item" data-speed="0.04">
+          <div class="gallery__parallax"><div class="reveal">
+            <img class="gallery__img"
+                 src="Images%20and%20Videos/kvd-image-06-640.webp"
+                 srcset="Images%20and%20Videos/kvd-image-06-640.webp 640w, Images%20and%20Videos/kvd-image-06-1200.webp 1200w"
+                 sizes="(max-width: 767px) min(100vw, 480px), min(29.6vw, 426px)"
+                 width="1200" height="1800" loading="lazy" decoding="async"
+                 alt="Model in a burgundy silk dress cradling a mustard python-leather shoulder bag">
+          </div></div>
+        </figure>
+        <figure class="gallery__item" data-speed="-0.06">
+          <div class="gallery__parallax"><div class="reveal" style="--reveal-delay: 120ms">
+            <img class="gallery__img"
+                 src="Images%20and%20Videos/kvd-image-07-640.webp"
+                 srcset="Images%20and%20Videos/kvd-image-07-640.webp 640w, Images%20and%20Videos/kvd-image-07-1200.webp 1200w"
+                 sizes="(max-width: 767px) min(100vw, 480px), min(16.2vw, 232px)"
+                 width="1200" height="1596" loading="lazy" decoding="async"
+                 alt="Model in a red dress carrying a large red python-leather tote">
+          </div></div>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="site-footer__grid">
+      <div>
+        <h2 class="site-footer__heading">Premium Boutique</h2>
+        <address class="site-footer__text">
+          <a href="https://maps.app.goo.gl/NopHFnpxyxHXqBnPA" target="_blank" rel="noopener noreferrer">
+            65A Shortmarket Street<br>
+            Cape Town, 8000<br>
+            South Africa
+          </a>
+        </address>
+      </div>
+      <div>
+        <h2 class="site-footer__heading">General</h2>
+        <ul class="site-footer__text">
+          <li><a href="mailto:info@katvanduinen.com">info@katvanduinen.com</a></li>
+          <li><a href="tel:+27769394343">+27 (0)76 939 4343</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="site-footer__heading">Media</h2>
+        <ul class="site-footer__text">
+          <li><a href="mailto:press@katvanduinen.com">press@katvanduinen.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="site-footer__heading">Follow</h2>
+        <ul class="site-footer__text">
+          <li><a href="https://www.instagram.com/katvanduinen.official/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.facebook.com/katvanduinendesign" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        </ul>
+      </div>
+      <p class="site-footer__copy">
+        © 2026 Kat van Duinen Operations.<br>
+        All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var bar = document.querySelector('.announcement');
+      if (!bar) return;
+      var track = bar.querySelector('.announcement__track');
+      var group = track.querySelector('.announcement__group');
+      var template = group.firstElementChild;
+      var PX_PER_SECOND = 40;
+
+      function build() {
+        var copy = group.nextElementSibling;
+        if (copy) copy.remove();
+        for (var i = 0; i < 50 && group.getBoundingClientRect().width < window.innerWidth; i++) {
+          var li = template.cloneNode(true);
+          li.setAttribute('aria-hidden', 'true');
+          group.appendChild(li);
+        }
+        copy = group.cloneNode(true);
+        copy.setAttribute('aria-hidden', 'true');
+        track.appendChild(copy);
+        track.style.setProperty('--marquee-duration', group.getBoundingClientRect().width / PX_PER_SECOND + 's');
+        bar.classList.add('is-ready');
+      }
+
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(build);
+      var timer;
+      window.addEventListener('resize', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          if (group.getBoundingClientRect().width < window.innerWidth) build();
+        }, 200);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var loader = document.querySelector('.loader');
+      if (!loader) return;
+      var css = getComputedStyle(root);
+      var logoMs = parseFloat(css.getPropertyValue('--loader-logo'));
+      var pauseMs = parseFloat(css.getPropertyValue('--loader-pause'));
+      var fadeMs = parseFloat(css.getPropertyValue('--loader-fade'));
+      var hero = document.querySelector('.hero__img');
+
+      // Hold for the hero image, but never more than 1.5s past the logo sequence.
+      var heroReady = new Promise(function (resolve) {
+        if (!hero || hero.complete) return resolve();
+        hero.addEventListener('load', resolve, { once: true });
+        hero.addEventListener('error', resolve, { once: true });
+        setTimeout(resolve, logoMs + pauseMs + 1500);
+      });
+      var sequence = new Promise(function (resolve) {
+        setTimeout(resolve, logoMs + pauseMs);
+      });
+
+      Promise.all([heroReady, sequence]).then(function () {
+        loader.classList.add('is-done');
+        root.classList.remove('is-loading');
+        document.dispatchEvent(new Event('kvd:loaded'));
+        setTimeout(function () { loader.remove(); }, fadeMs);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      function start() {
+        var els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('is-visible'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(function (el) { io.observe(el); });
+      }
+
+      // Wait until the loader has lifted so above-the-fold reveals aren't spent behind it.
+      if (document.documentElement.classList.contains('is-loading')) {
+        document.addEventListener('kvd:loaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var items = [].map.call(document.querySelectorAll('[data-speed]'), function (item) {
+        return { el: item, layer: item.firstElementChild, speed: parseFloat(item.dataset.speed) };
+      });
+      if (!items.length) return;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var narrow = window.matchMedia('(max-width: 767px)');
+      var MAX_SHIFT = 80;
+      var ticking = false;
+
+      // Offset grows with distance from viewport centre, so each image sits on its design position when centred.
+      function update() {
+        ticking = false;
+        var vh = window.innerHeight;
+        var still = reduceMotion.matches || narrow.matches;
+        items.forEach(function (item) {
+          if (still) {
+            item.layer.style.transform = '';
+            return;
+          }
+          var r = item.el.getBoundingClientRect();
+          if (r.bottom < -200 || r.top > vh + 200) return;
+          var shift = (r.top + r.height / 2 - vh / 2) * item.speed;
+          shift = Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, shift));
+          item.layer.style.transform = 'translate3d(0, ' + shift.toFixed(1) + 'px, 0)';
+        });
+      }
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      update();
+    })();
+  </script>
+</body>
+</html>
