@@ -1,3 +1,6 @@
+# Local secrets written by `vercel link`; never upload
+.env*
+
 # Source files kept in the repo but not used by the live site
 Images and Videos/design-preview.png
 Images and Videos/kvd-hero-image.png
